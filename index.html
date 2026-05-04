@@ -186,56 +186,93 @@ function sendToWhatsApp() {
     <a href="#contact">Contact</a>
 </nav>
 
+<script>
+const prices = {
+    "Mandola": 350,
+    "Mini Mandola": 150,
+    "Tantasy": 160,
+    "Quantella": 350,
+    "Kresco Lolipop": 400,
+    "Tun Tun": 500,
+    "Fruit Drop": 300,
+    "Jungle World": 300,
+    "Benzo Gift Pack": 200,
+    "Imli": 150
+};
+
+function calculateTotal() {
+    let total = 0;
+
+    for (let item in prices) {
+        let qty = document.getElementById(item).value || 0;
+        total += qty * prices[item];
+    }
+
+    document.getElementById("total").innerText = "₹ " + total;
+}
+
+function sendToWhatsApp() {
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+
+    let orderDetails = "";
+    let total = 0;
+
+    for (let item in prices) {
+        let qty = document.getElementById(item).value;
+        if (qty > 0) {
+            orderDetails += item + " x " + qty + "%0A";
+            total += qty * prices[item];
+        }
+    }
+
+    let msg = "नया ऑर्डर:%0Aनाम: " + name +
+              "%0Aमोबाइल: " + phone +
+              "%0A%0Aऑर्डर:%0A" + orderDetails +
+              "%0Aकुल कीमत: ₹" + total;
+
+    window.open("https://wa.me/919919286769?text=" + msg, "_blank");
+}
+</script>
+
 <section>
-    <h2>Our Products</h2>
+<h2>Select Products</h2>
 
-    <div class="products">
+<div style="max-width:400px;margin:auto;text-align:left;">
 
-        <div class="card"><h3>Mandola</h3><p class="price">₹350</p></div>
-        <div class="card"><h3>Mini Mandola</h3><p class="price">₹150</p></div>
-        <div class="card"><h3>Tantasy</h3><p class="price">₹160</p></div>
-        <div class="card"><h3>Quantella</h3><p class="price">₹350</p></div>
-        <div class="card"><h3>Kresco Lolipop</h3><p class="price">₹400</p></div>
-        <div class="card"><h3>Tun Tun</h3><p class="price">₹500</p></div>
-        <div class="card"><h3>Fruit Drop</h3><p class="price">₹300</p></div>
-        <div class="card"><h3>Jungle World</h3><p class="price">₹300</p></div>
-        <div class="card"><h3>Benzo Gift Pack</h3><p class="price">₹200</p></div>
-        <div class="card"><h3>Imli</h3><p class="price">₹150</p></div>
+Mandola (₹350) <input type="number" id="Mandola" min="0" onchange="calculateTotal()"><br><br>
+Mini Mandola (₹150) <input type="number" id="Mini Mandola" min="0" onchange="calculateTotal()"><br><br>
+Tantasy (₹160) <input type="number" id="Tantasy" min="0" onchange="calculateTotal()"><br><br>
+Quantella (₹350) <input type="number" id="Quantella" min="0" onchange="calculateTotal()"><br><br>
+Kresco Lolipop (₹400) <input type="number" id="Kresco Lolipop" min="0" onchange="calculateTotal()"><br><br>
+Tun Tun (₹500) <input type="number" id="Tun Tun" min="0" onchange="calculateTotal()"><br><br>
+Fruit Drop (₹300) <input type="number" id="Fruit Drop" min="0" onchange="calculateTotal()"><br><br>
+Jungle World (₹300) <input type="number" id="Jungle World" min="0" onchange="calculateTotal()"><br><br>
+Benzo Gift Pack (₹200) <input type="number" id="Benzo Gift Pack" min="0" onchange="calculateTotal()"><br><br>
+Imli (₹150) <input type="number" id="Imli" min="0" onchange="calculateTotal()"><br><br>
 
-    </div>
+<h3>Total: <span id="total">₹ 0</span></h3>
+
+</div>
 </section>
 
-<section id="order">
-    <h2>Place Order</h2>
+<!-- CUSTOMER DETAILS -->
+<section>
+<h2>Customer Details</h2>
 
-    <form onsubmit="sendToWhatsApp(); return false;">
-        <input type="text" id="name" placeholder="Your Name" required>
-        <input type="tel" id="phone" placeholder="Mobile Number" required>
-        <textarea id="order" placeholder="Your Order" required></textarea>
-        <button type="submit">Order on WhatsApp</button>
-    </form>
+<form onsubmit="sendToWhatsApp(); return false;">
+<input type="text" id="name" placeholder="Your Name" required><br>
+<input type="tel" id="phone" placeholder="Mobile Number" required><br><br>
+
+<button type="submit">Order on WhatsApp</button>
+</form>
 </section>
 
-<section id="payment">
-    <h2>Online Payment</h2>
-    <p>Pay using UPI</p>
+<!-- PAYMENT QR -->
+<section>
+<h2>Scan & Pay</h2>
+<p>Scan this QR to pay</p>
 
-    <a href="upi://pay?pa=yourupi@upi&pn=Ganpati&cu=INR">
-        <button class="pay">Pay Now</button>
-    </a>
+<img src="qr.png" width="250">
+
 </section>
-
-<section id="contact">
-    <h2>Contact</h2>
-    <p>📞 9919286769</p>
-    <p>Owner: Parmatm Dixit</p>
-</section>
-
-<footer>
-    <p>© 2026 श्री गणपति इंटरप्राइज</p>
-</footer>
-
-<a class="whatsapp" href="https://wa.me/919919286769">💬</a>
-
-</body>
-</html>
