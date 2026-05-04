@@ -1,173 +1,90 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>श्री गणपति इंटरप्राइज</title>
-
-<style>
-body {margin:0;font-family:sans-serif;background:#fafafa;}
-header {background:#d32f2f;color:white;padding:15px;text-align:center;font-size:20px;}
-.container {padding:10px;}
-
-.card {
-  background:white;
-  margin:10px 0;
-  padding:15px;
-  border-radius:12px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  box-shadow:0 2px 8px rgba(0,0,0,0.1);
-}
-
-.card h3 {margin:0;}
-.price {color:#d32f2f;font-weight:bold;}
-
-.qty {
-  width:50px;
-  padding:5px;
-  text-align:center;
-}
-
-.cart {
-  position:fixed;
-  bottom:0;
-  width:100%;
-  background:#d32f2f;
-  color:white;
-  padding:15px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-button {
-  background:white;
-  color:#d32f2f;
-  border:none;
-  padding:10px;
-  border-radius:8px;
-}
-
-.qr {
-  text-align:center;
-  margin-top:20px;
-}
-</style>
-
 <script>
 const prices = {
- "Mandola":350,
- "Mini Mandola":150,
- "Tantasy":160,
- "Quantella":350,
- "Kresco Lolipop":400,
- "Tun Tun":500,
- "Fruit Drop":300,
- "Jungle World":300,
- "Benzo Gift Pack":200,
- "Imli":150
+    "Mandola": 350,
+    "Mini Mandola": 150,
+    "Tantasy": 160,
+    "Quantella": 350,
+    "Kresco Lolipop": 400,
+    "Tun Tun": 500,
+    "Fruit Drop": 300,
+    "Jungle World": 300,
+    "Benzo Gift Pack": 200,
+    "Imli": 150
 };
 
-function updateTotal() {
- let total=0;
- for (let item in prices) {
-   let qty=document.getElementById(item).value||0;
-   total+=qty*prices[item];
- }
- document.getElementById("total").innerText="₹ "+total;
+function calculateTotal() {
+    let total = 0;
+
+    for (let item in prices) {
+        let qty = document.getElementById(item).value || 0;
+        total += qty * prices[item];
+    }
+
+    document.getElementById("total").innerText = "₹ " + total;
 }
 
-function orderNow(){
- let order="";
- let total=0;
+function sendToWhatsApp() {
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
 
- for (let item in prices) {
-   let qty=document.getElementById(item).value;
-   if(qty>0){
-     order+=item+" x "+qty+"%0A";
-     total+=qty*prices[item];
-   }
- }
+    let orderDetails = "";
+    let total = 0;
 
- let msg="Order:%0A"+order+"%0ATotal: ₹"+total;
- window.open("https://wa.me/919919286769?text="+msg);
+    for (let item in prices) {
+        let qty = document.getElementById(item).value;
+        if (qty > 0) {
+            orderDetails += item + " x " + qty + "%0A";
+            total += qty * prices[item];
+        }
+    }
+
+    let msg = "नया ऑर्डर:%0Aनाम: " + name +
+              "%0Aमोबाइल: " + phone +
+              "%0A%0Aऑर्डर:%0A" + orderDetails +
+              "%0Aकुल कीमत: ₹" + total;
+
+    window.open("https://wa.me/919919286769?text=" + msg, "_blank");
 }
 </script>
 
-</head>
+<section>
+<h2>Select Products</h2>
 
-<body>
+<div style="max-width:400px;margin:auto;text-align:left;">
 
-<header>🍫 श्री गणपति इंटरप्राइज</header>
+Mandola (₹350) <input type="number" id="Mandola" min="0" onchange="calculateTotal()"><br><br>
+Mini Mandola (₹150) <input type="number" id="Mini Mandola" min="0" onchange="calculateTotal()"><br><br>
+Tantasy (₹160) <input type="number" id="Tantasy" min="0" onchange="calculateTotal()"><br><br>
+Quantella (₹350) <input type="number" id="Quantella" min="0" onchange="calculateTotal()"><br><br>
+Kresco Lolipop (₹400) <input type="number" id="Kresco Lolipop" min="0" onchange="calculateTotal()"><br><br>
+Tun Tun (₹500) <input type="number" id="Tun Tun" min="0" onchange="calculateTotal()"><br><br>
+Fruit Drop (₹300) <input type="number" id="Fruit Drop" min="0" onchange="calculateTotal()"><br><br>
+Jungle World (₹300) <input type="number" id="Jungle World" min="0" onchange="calculateTotal()"><br><br>
+Benzo Gift Pack (₹200) <input type="number" id="Benzo Gift Pack" min="0" onchange="calculateTotal()"><br><br>
+Imli (₹150) <input type="number" id="Imli" min="0" onchange="calculateTotal()"><br><br>
 
-<div class="container">
-
-<!-- PRODUCT CARDS -->
-<div class="card">
-<h3>Mandola <br><span class="price">₹350</span></h3>
-<input type="number" id="Mandola" class="qty" min="0" onchange="updateTotal()">
-</div>
-
-<div class="card">
-<h3>Mini Mandola <br><span class="price">₹150</span></h3>
-<input type="number" id="Mini Mandola" class="qty" min="0" onchange="updateTotal()">
-</div>
-
-<div class="card">
-<h3>Tantasy <br><span class="price">₹160</span></h3>
-<input type="number" id="Tantasy" class="qty" min="0" onchange="updateTotal()">
-</div>
-
-<div class="card">
-<h3>Quantella <br><span class="price">₹350</span></h3>
-<input type="number" id="Quantella" class="qty" min="0" onchange="updateTotal()">
-</div>
-
-<div class="card">
-<h3>Kresco Lolipop <br><span class="price">₹400</span></h3>
-<input type="number" id="Kresco Lolipop" class="qty" min="0" onchange="updateTotal()">
-</div>
-
-<div class="card">
-<h3>Tun Tun <br><span class="price">₹500</span></h3>
-<input type="number" id="Tun Tun" class="qty" min="0" onchange="updateTotal()">
-</div>
-
-<div class="card">
-<h3>Fruit Drop <br><span class="price">₹300</span></h3>
-<input type="number" id="Fruit Drop" class="qty" min="0" onchange="updateTotal()">
-</div>
-
-<div class="card">
-<h3>Jungle World <br><span class="price">₹300</span></h3>
-<input type="number" id="Jungle World" class="qty" min="0" onchange="updateTotal()">
-</div>
-
-<div class="card">
-<h3>Benzo Gift Pack <br><span class="price">₹200</span></h3>
-<input type="number" id="Benzo Gift Pack" class="qty" min="0" onchange="updateTotal()">
-</div>
-
-<div class="card">
-<h3>Imli <br><span class="price">₹150</span></h3>
-<input type="number" id="Imli" class="qty" min="0" onchange="updateTotal()">
-</div>
-
-<!-- QR PAYMENT -->
-<div class="qr">
-<h3>Scan & Pay</h3>
-<img src="qr.png" width="200">
-</div>
+<h3>Total: <span id="total">₹ 0</span></h3>
 
 </div>
+</section>
 
-<!-- CART BAR -->
-<div class="cart">
-<span id="total">₹ 0</span>
-<button onclick="orderNow()">Order Now</button>
-</div>
+<!-- CUSTOMER DETAILS -->
+<section>
+<h2>Customer Details</h2>
 
-</body>
-</html>
+<form onsubmit="sendToWhatsApp(); return false;">
+<input type="text" id="name" placeholder="Your Name" required><br>
+<input type="tel" id="phone" placeholder="Mobile Number" required><br><br>
+
+<button type="submit">Order on WhatsApp</button>
+</form>
+</section>
+
+<!-- PAYMENT QR -->
+<section>
+<h2>Scan & Pay</h2>
+<p>Scan this QR to pay</p>
+
+<img src="qr.png" width="250">
+
+</section>
