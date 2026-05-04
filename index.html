@@ -115,16 +115,56 @@
         }
     </style>
 
-<script>
+<<script>
 function sendToWhatsApp() {
     var name = document.getElementById("name").value;
     var phone = document.getElementById("phone").value;
     var order = document.getElementById("order").value;
+    var address = document.getElementById("address").value;
 
-    var msg = "नया ऑर्डर:%0Aनाम: " + name +
-              "%0Aमोबाइल: " + phone +
-              "%0Aऑर्डर: " + order;
+    function sendMessage(locationLink) {
+        var msg = "नया ऑर्डर:%0Aनाम: " + name +
+                  "%0Aमोबाइल: " + phone +
+                  "%0Aऑर्डर: " + order +
+                  "%0Aपता: " + address +
+                  "%0Aलोकेशन: " + locationLink;
 
+        window.open("https://wa.me/919919286769?text=" + msg, "_blank");
+    }
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                var lat = position.coords.latitude;
+                var lon = position.coords.longitude;
+
+                var locationLink = "https://maps.google.com/?q=" + lat + "," + lon;
+
+                sendMessage(locationLink);
+            },
+            function(error) {
+                // If user denies location
+                sendMessage("Location not shared");
+            }
+        );
+    } else {
+        sendMessage("Location not supported");
+    }
+}
+</script>
+
+<section id="order">
+    <h2>Place Order</h2>
+
+    <form onsubmit="sendToWhatsApp(); return false;">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="tel" id="phone" placeholder="Mobile Number" required>
+        <textarea id="order" placeholder="Your Order" required></textarea>
+        <textarea id="address" placeholder="Your Address" required></textarea>
+
+        <button type="submit">Order on WhatsApp</button>
+    </form>
+</section>
     window.open("https://wa.me/919919286769?text=" + msg, "_blank");
 }
 </script>
