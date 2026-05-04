@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>श्रीं गणपति इंटरप्राइज</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0f0a08;
+color:#fff;
+}
+
+header{
+background:linear-gradient(135deg,#3b1f14,#000);
+padding:18px;
+text-align:center;
+position:sticky;
+top:0;
+}
+
+header h1{
+color:#ffcc70;
+font-size:20px;
+}
+
+header p{
+font-size:13px;
+}
+
+.hero{
+padding:40px 20px;
+text-align:center;
+background:#1a0f0b;
+}
+
+.hero h2{
+color:#ffcc70;
+}
+
+.section{
+padding:20px;
+}
+
+.card{
+background:#1c120f;
+padding:12px;
+margin:10px 0;
+border-radius:10px;
+}
+
+button{
+background:#ff7a18;
+color:white;
+padding:8px 12px;
+border:none;
+border-radius:8px;
+margin-top:6px;
+cursor:pointer;
+width:100%;
+}
+
+.price{
+display:flex;
+justify-content:space-between;
+border-bottom:1px solid #333;
+padding:6px 0;
+}
+
+input,textarea{
+width:100%;
+padding:10px;
+margin:6px 0;
+border-radius:8px;
+border:none;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:8px;
+}
+
+.gallery img{
+width:100%;
+border-radius:8px;
+}
+
+footer{
+text-align:center;
+padding:15px;
+font-size:12px;
+color:#aaa;
+}
+
+.whatsapp{
+position:fixed;
+bottom:15px;
+right:15px;
+background:#25D366;
+padding:12px;
+border-radius:50%;
+font-size:20px;
+color:#fff;
+text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>श्रीं गणपति इंटरप्राइज</h1>
+<p>Owner: Parmatma Dikshit</p>
+</header>
+
+<div class="hero">
+<h2>Premium Chocolate Store 🍫</h2>
+<p>Fresh | Quality | Trusted</p>
+</div>
+
+<!-- PRODUCTS -->
+<div class="section">
+<h2>Products</h2>
+
+<div class="card">
+Chocolate Box Small - ₹199
+<button onclick="add('Small Box',199)">Add</button>
+</div>
+
+<div class="card">
+Chocolate Box Medium - ₹399
+<button onclick="add('Medium Box',399)">Add</button>
+</div>
+
+<div class="card">
+Premium Gift Pack - ₹699
+<button onclick="add('Premium Pack',699)">Add</button>
+</div>
+</div>
+
+<!-- CART -->
+<div class="section">
+<h2>Your Cart</h2>
+<div class="card" id="cart">No items yet</div>
+<button onclick="pay()">Proceed to Pay</button>
+</div>
+
+<!-- BOOKING -->
+<div class="section">
+<h2>Booking</h2>
+<div class="card">
+<input type="text" placeholder="Name">
+<input type="text" placeholder="Mobile">
+<textarea placeholder="Order details"></textarea>
+<button>Submit Booking</button>
+</div>
+</div>
+
+<!-- CONTACT -->
+<div class="section">
+<h2>Contact</h2>
+<div class="card">
+<input type="text" placeholder="Name">
+<input type="text" placeholder="Phone">
+<textarea placeholder="Message"></textarea>
+<button>Send</button>
+</div>
+</div>
+
+<!-- GALLERY -->
+<div class="section">
+<h2>Gallery</h2>
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1541745537411-b8046dc6d66c">
+<img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c">
+<img src="https://images.unsplash.com/photo-1505253213348-cd54c92b37f7">
+<img src="https://images.unsplash.com/photo-1551024506-0bccd828d307">
+</div>
+</div>
+
+<!-- PAYMENT -->
+<div class="section">
+<h2>Payment</h2>
+<div class="card">
+<p>UPI ID: yourupi@bank</p>
+<button onclick="upiPay()">Pay via UPI</button>
+</div>
+</div>
+
+<footer>
+© 2026 श्रीं गणपति इंटरप्राइज
+</footer>
+
+<a class="whatsapp" href="https://wa.me/91XXXXXXXXXX">💬</a>
+
+<script>
+let cart = [];
+
+function add(name,price){
+cart.push({name,price});
+render();
+}
+
+function render(){
+let html = "";
+let total = 0;
+
+cart.forEach(i=>{
+total += i.price;
+html += i.name + " - ₹" + i.price + "<br>";
+});
+
+html += "<hr>Total: ₹"+total;
+document.getElementById("cart").innerHTML = html;
+}
+
+function pay(){
+alert("Proceed to UPI payment below");
+}
+
+function upiPay(){
+let total = cart.reduce((a,b)=>a+b.price,0);
+let upi = "upi://pay?pa=yourupi@bank&pn=Ganpati&am="+total+"&cu=INR";
+window.location.href = upi;
+}
+</script>
+
+</body>
+</html>
