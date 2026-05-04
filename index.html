@@ -1,232 +1,193 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>श्रीं गणपति इंटरप्राइज</title>
+    <title>श्री गणपति इंटरप्राइज</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            background: #fff8f0;
+        }
 
-<style>
-body{
-margin:0;
-font-family:Arial;
-background:#0f0a08;
-color:#fff;
-}
+        header {
+            background: brown;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
 
-header{
-background:linear-gradient(135deg,#3b1f14,#000);
-padding:18px;
-text-align:center;
-position:sticky;
-top:0;
-}
+        nav {
+            background: #5a2d0c;
+            text-align: center;
+            padding: 10px;
+        }
 
-header h1{
-color:#ffcc70;
-font-size:20px;
-}
+        nav a {
+            color: white;
+            margin: 10px;
+            text-decoration: none;
+            font-weight: bold;
+        }
 
-header p{
-font-size:13px;
-}
+        section {
+            padding: 20px;
+            text-align: center;
+        }
 
-.hero{
-padding:40px 20px;
-text-align:center;
-background:#1a0f0b;
-}
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            width: 90%;
+        }
 
-.hero h2{
-color:#ffcc70;
-}
+        table, th, td {
+            border: 1px solid black;
+        }
 
-.section{
-padding:20px;
-}
+        th, td {
+            padding: 10px;
+        }
 
-.card{
-background:#1c120f;
-padding:12px;
-margin:10px 0;
-border-radius:10px;
-}
+        form {
+            background: white;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+            border-radius: 10px;
+        }
 
-button{
-background:#ff7a18;
-color:white;
-padding:8px 12px;
-border:none;
-border-radius:8px;
-margin-top:6px;
-cursor:pointer;
-width:100%;
-}
+        input, textarea {
+            width: 90%;
+            padding: 10px;
+            margin: 10px;
+        }
 
-.price{
-display:flex;
-justify-content:space-between;
-border-bottom:1px solid #333;
-padding:6px 0;
-}
+        button {
+            background: brown;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
 
-input,textarea{
-width:100%;
-padding:10px;
-margin:6px 0;
-border-radius:8px;
-border:none;
-}
+        footer {
+            background: brown;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
 
-.gallery{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:8px;
-}
+        .whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 20px;
+        }
 
-.gallery img{
-width:100%;
-border-radius:8px;
-}
+        .pay {
+            background: green;
+            margin-top: 10px;
+        }
+    </style>
 
-footer{
-text-align:center;
-padding:15px;
-font-size:12px;
-color:#aaa;
-}
+<script>
+function sendToWhatsApp() {
+    var name = document.getElementById("name").value;
+    var phone = document.getElementById("phone").value;
+    var order = document.getElementById("order").value;
 
-.whatsapp{
-position:fixed;
-bottom:15px;
-right:15px;
-background:#25D366;
-padding:12px;
-border-radius:50%;
-font-size:20px;
-color:#fff;
-text-decoration:none;
+    var message = "नया ऑर्डर:%0Aनाम: " + name +
+                  "%0Aमोबाइल: " + phone +
+                  "%0Aऑर्डर: " + order;
+
+    var url = "https://wa.me/919919286769?text=" + message;
+
+    window.open(url, "_blank");
 }
-</style>
+</script>
+
 </head>
 
 <body>
 
 <header>
-<h1>श्रीं गणपति इंटरप्राइज</h1>
-<p>Owner: Parmatma Dikshit</p>
+    <h1>🍫 श्री गणपति इंटरप्राइज</h1>
+    <p>Owner: Parmatm Dixit</p>
 </header>
 
-<div class="hero">
-<h2>Premium Chocolate Store 🍫</h2>
-<p>Fresh | Quality | Trusted</p>
-</div>
+<nav>
+    <a href="#">होम</a>
+    <a href="#price">प्राइस लिस्ट</a>
+    <a href="#order">ऑर्डर</a>
+    <a href="#payment">पेमेंट</a>
+    <a href="#contact">संपर्क</a>
+</nav>
 
-<!-- PRODUCTS -->
-<div class="section">
-<h2>Products</h2>
+<section>
+    <h2>हमारे प्रोडक्ट</h2>
+</section>
 
-<div class="card">
-Chocolate Box Small - ₹199
-<button onclick="add('Small Box',199)">Add</button>
-</div>
+<!-- PRICE LIST -->
+<section id="price">
+    <h2>प्राइस लिस्ट</h2>
 
-<div class="card">
-Chocolate Box Medium - ₹399
-<button onclick="add('Medium Box',399)">Add</button>
-</div>
+    <table>
+        <tr><th>प्रोडक्ट</th><th>कीमत</th></tr>
+        <tr><td>Mandola</td><td>₹350</td></tr>
+        <tr><td>Mini Mandola</td><td>₹150</td></tr>
+        <tr><td>Tantasy</td><td>₹160</td></tr>
+        <tr><td>Quantella</td><td>₹350</td></tr>
+        <tr><td>Kresco Lolipop</td><td>₹400</td></tr>
+        <tr><td>Tun Tun</td><td>₹500</td></tr>
+        <tr><td>Fruit Drop</td><td>₹300</td></tr>
+        <tr><td>Jungle World</td><td>₹300</td></tr>
+        <tr><td>Benzo Gift Pack</td><td>₹200</td></tr>
+        <tr><td>Imli</td><td>₹150</td></tr>
+    </table>
+</section>
 
-<div class="card">
-Premium Gift Pack - ₹699
-<button onclick="add('Premium Pack',699)">Add</button>
-</div>
-</div>
+<!-- ORDER FORM -->
+<section id="order">
+    <h2>ऑर्डर करें</h2>
 
-<!-- CART -->
-<div class="section">
-<h2>Your Cart</h2>
-<div class="card" id="cart">No items yet</div>
-<button onclick="pay()">Proceed to Pay</button>
-</div>
+    <form onsubmit="sendToWhatsApp(); return false;">
+        <input type="text" id="name" placeholder="आपका नाम" required><br>
+        <input type="tel" id="phone" placeholder="मोबाइल नंबर" required><br>
+        <textarea id="order" placeholder="आप क्या ऑर्डर करना चाहते हैं?" required></textarea><br>
+        <button type="submit">WhatsApp पर ऑर्डर भेजें</button>
+    </form>
+</section>
 
-<!-- BOOKING -->
-<div class="section">
-<h2>Booking</h2>
-<div class="card">
-<input type="text" placeholder="Name">
-<input type="text" placeholder="Mobile">
-<textarea placeholder="Order details"></textarea>
-<button>Submit Booking</button>
-</div>
-</div>
+<!-- ONLINE PAYMENT -->
+<section id="payment">
+    <h2>ऑनलाइन पेमेंट</h2>
+    <p>UPI से पेमेंट करने के लिए नीचे क्लिक करें</p>
+
+    <!-- Replace UPI ID -->
+    <a href="upi://pay?pa=yourupi@upi&pn=GanpatiEnterprise&cu=INR">
+        <button class="pay">Pay Now (UPI)</button>
+    </a>
+</section>
 
 <!-- CONTACT -->
-<div class="section">
-<h2>Contact</h2>
-<div class="card">
-<input type="text" placeholder="Name">
-<input type="text" placeholder="Phone">
-<textarea placeholder="Message"></textarea>
-<button>Send</button>
-</div>
-</div>
-
-<!-- GALLERY -->
-<div class="section">
-<h2>Gallery</h2>
-<div class="gallery">
-<img src="https://images.unsplash.com/photo-1541745537411-b8046dc6d66c">
-<img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c">
-<img src="https://images.unsplash.com/photo-1505253213348-cd54c92b37f7">
-<img src="https://images.unsplash.com/photo-1551024506-0bccd828d307">
-</div>
-</div>
-
-<!-- PAYMENT -->
-<div class="section">
-<h2>Payment</h2>
-<div class="card">
-<p>UPI ID: yourupi@bank</p>
-<button onclick="upiPay()">Pay via UPI</button>
-</div>
-</div>
+<section id="contact">
+    <h2>संपर्क करें</h2>
+    <p>📞 9919286769</p>
+    <p>👤 Owner: Parmatm Dixit</p>
+</section>
 
 <footer>
-© 2026 श्रीं गणपति इंटरप्राइज
+    <p>© 2026 श्री गणपति इंटरप्राइज</p>
 </footer>
 
-<a class="whatsapp" href="https://wa.me/91XXXXXXXXXX">💬</a>
-
-<script>
-let cart = [];
-
-function add(name,price){
-cart.push({name,price});
-render();
-}
-
-function render(){
-let html = "";
-let total = 0;
-
-cart.forEach(i=>{
-total += i.price;
-html += i.name + " - ₹" + i.price + "<br>";
-});
-
-html += "<hr>Total: ₹"+total;
-document.getElementById("cart").innerHTML = html;
-}
-
-function pay(){
-alert("Proceed to UPI payment below");
-}
-
-function upiPay(){
-let total = cart.reduce((a,b)=>a+b.price,0);
-let upi = "upi://pay?pa=yourupi@bank&pn=Ganpati&am="+total+"&cu=INR";
-window.location.href = upi;
-}
-</script>
+<!-- WhatsApp Button -->
+<a class="whatsapp" href="https://wa.me/919919286769" target="_blank">💬</a>
 
 </body>
 </html>
