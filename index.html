@@ -3,79 +3,103 @@
 <head>
     <title>श्री गणपति इंटरप्राइज</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <style>
         body {
-            font-family: Arial;
             margin: 0;
+            font-family: 'Segoe UI', sans-serif;
             background: #fff8f0;
         }
 
         header {
-            background: brown;
+            background: linear-gradient(to right, #4b2c20, #8b4513);
             color: white;
             text-align: center;
-            padding: 20px;
+            padding: 30px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
         }
 
         nav {
-            background: #5a2d0c;
+            background: #3e2723;
             text-align: center;
-            padding: 10px;
+            padding: 12px;
         }
 
         nav a {
             color: white;
-            margin: 10px;
+            margin: 12px;
             text-decoration: none;
             font-weight: bold;
         }
 
         section {
-            padding: 20px;
+            padding: 30px 15px;
             text-align: center;
         }
 
-        table {
-            margin: auto;
-            border-collapse: collapse;
-            width: 90%;
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
         }
 
-        table, th, td {
-            border: 1px solid black;
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        th, td {
-            padding: 10px;
+        .card h3 {
+            margin: 10px 0;
+        }
+
+        .price {
+            color: brown;
+            font-weight: bold;
         }
 
         form {
             background: white;
             padding: 20px;
+            border-radius: 12px;
             max-width: 400px;
             margin: auto;
-            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         input, textarea {
             width: 90%;
             padding: 10px;
             margin: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
         }
 
         button {
-            background: brown;
+            background: #6d4c41;
             color: white;
             padding: 10px 20px;
             border: none;
+            border-radius: 8px;
             cursor: pointer;
         }
 
+        .pay {
+            background: green;
+            margin-top: 10px;
+        }
+
         footer {
-            background: brown;
+            background: #3e2723;
             color: white;
-            padding: 10px;
             text-align: center;
+            padding: 15px;
         }
 
         .whatsapp {
@@ -86,13 +110,8 @@
             color: white;
             padding: 15px;
             border-radius: 50%;
-            text-decoration: none;
             font-size: 20px;
-        }
-
-        .pay {
-            background: green;
-            margin-top: 10px;
+            text-decoration: none;
         }
     </style>
 
@@ -102,13 +121,11 @@ function sendToWhatsApp() {
     var phone = document.getElementById("phone").value;
     var order = document.getElementById("order").value;
 
-    var message = "नया ऑर्डर:%0Aनाम: " + name +
-                  "%0Aमोबाइल: " + phone +
-                  "%0Aऑर्डर: " + order;
+    var msg = "नया ऑर्डर:%0Aनाम: " + name +
+              "%0Aमोबाइल: " + phone +
+              "%0Aऑर्डर: " + order;
 
-    var url = "https://wa.me/919919286769?text=" + message;
-
-    window.open(url, "_blank");
+    window.open("https://wa.me/919919286769?text=" + msg, "_blank");
 }
 </script>
 
@@ -118,76 +135,67 @@ function sendToWhatsApp() {
 
 <header>
     <h1>🍫 श्री गणपति इंटरप्राइज</h1>
-    <p>Owner: Parmatm Dixit</p>
+    <p>Premium Chocolate Store</p>
 </header>
 
 <nav>
-    <a href="#">होम</a>
-    <a href="#price">प्राइस लिस्ट</a>
-    <a href="#order">ऑर्डर</a>
-    <a href="#payment">पेमेंट</a>
-    <a href="#contact">संपर्क</a>
+    <a href="#">Home</a>
+    <a href="#products">Products</a>
+    <a href="#order">Order</a>
+    <a href="#payment">Payment</a>
+    <a href="#contact">Contact</a>
 </nav>
 
 <section>
-    <h2>हमारे प्रोडक्ट</h2>
+    <h2>Our Products</h2>
+
+    <div class="products">
+
+        <div class="card"><h3>Mandola</h3><p class="price">₹350</p></div>
+        <div class="card"><h3>Mini Mandola</h3><p class="price">₹150</p></div>
+        <div class="card"><h3>Tantasy</h3><p class="price">₹160</p></div>
+        <div class="card"><h3>Quantella</h3><p class="price">₹350</p></div>
+        <div class="card"><h3>Kresco Lolipop</h3><p class="price">₹400</p></div>
+        <div class="card"><h3>Tun Tun</h3><p class="price">₹500</p></div>
+        <div class="card"><h3>Fruit Drop</h3><p class="price">₹300</p></div>
+        <div class="card"><h3>Jungle World</h3><p class="price">₹300</p></div>
+        <div class="card"><h3>Benzo Gift Pack</h3><p class="price">₹200</p></div>
+        <div class="card"><h3>Imli</h3><p class="price">₹150</p></div>
+
+    </div>
 </section>
 
-<!-- PRICE LIST -->
-<section id="price">
-    <h2>प्राइस लिस्ट</h2>
-
-    <table>
-        <tr><th>प्रोडक्ट</th><th>कीमत</th></tr>
-        <tr><td>Mandola</td><td>₹350</td></tr>
-        <tr><td>Mini Mandola</td><td>₹150</td></tr>
-        <tr><td>Tantasy</td><td>₹160</td></tr>
-        <tr><td>Quantella</td><td>₹350</td></tr>
-        <tr><td>Kresco Lolipop</td><td>₹400</td></tr>
-        <tr><td>Tun Tun</td><td>₹500</td></tr>
-        <tr><td>Fruit Drop</td><td>₹300</td></tr>
-        <tr><td>Jungle World</td><td>₹300</td></tr>
-        <tr><td>Benzo Gift Pack</td><td>₹200</td></tr>
-        <tr><td>Imli</td><td>₹150</td></tr>
-    </table>
-</section>
-
-<!-- ORDER FORM -->
 <section id="order">
-    <h2>ऑर्डर करें</h2>
+    <h2>Place Order</h2>
 
     <form onsubmit="sendToWhatsApp(); return false;">
-        <input type="text" id="name" placeholder="आपका नाम" required><br>
-        <input type="tel" id="phone" placeholder="मोबाइल नंबर" required><br>
-        <textarea id="order" placeholder="आप क्या ऑर्डर करना चाहते हैं?" required></textarea><br>
-        <button type="submit">WhatsApp पर ऑर्डर भेजें</button>
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="tel" id="phone" placeholder="Mobile Number" required>
+        <textarea id="order" placeholder="Your Order" required></textarea>
+        <button type="submit">Order on WhatsApp</button>
     </form>
 </section>
 
-<!-- ONLINE PAYMENT -->
 <section id="payment">
-    <h2>ऑनलाइन पेमेंट</h2>
-    <p>UPI से पेमेंट करने के लिए नीचे क्लिक करें</p>
+    <h2>Online Payment</h2>
+    <p>Pay using UPI</p>
 
-    <!-- Replace UPI ID -->
-    <a href="upi://pay?pa=yourupi@upi&pn=GanpatiEnterprise&cu=INR">
-        <button class="pay">Pay Now (UPI)</button>
+    <a href="upi://pay?pa=yourupi@upi&pn=Ganpati&cu=INR">
+        <button class="pay">Pay Now</button>
     </a>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
-    <h2>संपर्क करें</h2>
+    <h2>Contact</h2>
     <p>📞 9919286769</p>
-    <p>👤 Owner: Parmatm Dixit</p>
+    <p>Owner: Parmatm Dixit</p>
 </section>
 
 <footer>
     <p>© 2026 श्री गणपति इंटरप्राइज</p>
 </footer>
 
-<!-- WhatsApp Button -->
-<a class="whatsapp" href="https://wa.me/919919286769" target="_blank">💬</a>
+<a class="whatsapp" href="https://wa.me/919919286769">💬</a>
 
 </body>
 </html>
