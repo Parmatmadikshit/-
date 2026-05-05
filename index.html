@@ -1,148 +1,207 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>श्री गणपति इंटरप्राइज</title>
-    <meta charset="UTF-8">
-    <style>
-        body {
-            font-family: Arial;
-            margin: 0;
-            background: #fff8f0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> श्रीं गणपति </title>
 
-        header {
-            background: brown;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-
-        nav {
-            background: #5a2d0c;
-            text-align: center;
-            padding: 10px;
-        }
-
-        nav a {
-            color: white;
-            margin: 10px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        section {
-            padding: 20px;
-            text-align: center;
-        }
-
-        table {
-            margin: auto;
-            border-collapse: collapse;
-            width: 90%;
-        }
-
-        table, th, td {
-            border: 1px solid black;
-        }
-
-        th, td {
-            padding: 10px;
-        }
-
-        form {
-            background: white;
-            padding: 20px;
-            max-width: 400px;
-            margin: auto;
-            border-radius: 10px;
-        }
-
-        input, textarea {
-            width: 90%;
-            padding: 10px;
-            margin: 10px;
-        }
-
-        button {
-            background: brown;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-        }
-
-        footer {
-            background: brown;
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .whatsapp {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #25D366;
-            color: white;
-            padding: 15px;
-            border-radius: 50%;
-            text-decoration: none;
-            font-size: 20px;
-        }
-
-        .pay {
-            background: green;
-            margin-top: 10px;
-        }
-    </style>
-
-<script>
-function sendToWhatsApp() {
-    var name = document.getElementById("name").value;
-    var phone = document.getElementById("phone").value;
-    var order = document.getElementById("order").value;
-
-    var message = "नया ऑर्डर:%0Aनाम: " + name +
-                  "%0Aमोबाइल: " + phone +
-                  "%0Aऑर्डर: " + order;
-
-    var url = "https://wa.me/919919286769?text=" + message;
-
-    window.open(url, "_blank");
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #eef1f5;
+  margin: 0;
 }
-</script>
-
+header {
+  background: linear-gradient(90deg,#000,#333);
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  font-size: 26px;
+  letter-spacing: 2px;
+}
+.container {
+  padding: 15px;
+}
+.card {
+  background: #fff;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 14px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+h3 { margin-top: 0; }
+button {
+  padding: 12px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 16px;
+  margin-top: 5px;
+}
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+#billBox {
+  background: #000;
+  color: #00ff90;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: monospace;
+  white-space: pre-line;
+}
+video { width: 100%; border-radius: 10px; }
+.small-btn { background:#444; }
+</style>
 </head>
 
 <body>
+<header>NIKKI BOOK DEPOT</header>
 
-<header>
-    <h1>🍫 श्री गणपति इंटरप्राइज</h1>
-    <p>Owner: Parmatm Dixit</p>
-</header>
+<div class="container">
 
-<nav>
-    <a href="#">होम</a>
-    <a href="#price">प्राइस लिस्ट</a>
-    <a href="#order">ऑर्डर</a>
-    <a href="#payment">पेमेंट</a>
-    <a href="#contact">संपर्क</a>
-</nav>
+<div class="card">
+<h3>Products</h3>
+<p>Mandola - ₹350</p>
+<p>Mini Mandola - ₹150</p>
+</div>
 
-<section>
-    <h2>हमारे प्रोडक्ट</h2>
-</section>
+<div class="card">
+<h3>Create Smart Bill</h3>
+<input type="text" id="name" placeholder="Customer Name">
+<input type="text" id="location" placeholder="Customer Location">
+<input type="text" id="address" placeholder="Full Delivery Address">
+<select id="savedAddresses" onchange="selectSavedAddress()">
+<option value="">Select Saved Address</option>
+</select>
+<button class="small-btn" onclick="saveAddress()">Save Address</button>
+<button class="small-btn" onclick="getLocation()">Auto Detect Location</button>
 
-<!-- PRICE LIST -->
-<section id="price">
-    <h2>प्राइस लिस्ट</h2>
+<select id="product">
+<option value="Mandola" data-price="350">Mandola - ₹350</option>
+<option value="Mini Mandola" data-price="150">Mini Mandola - ₹150</option>
+</select>
 
-    <table>
-        <tr><th>प्रोडक्ट</th><th>कीमत</th></tr>
-        <tr><td>Mandola</td><td>₹350</td></tr>
-        <tr><td>Mini Mandola</td><td>₹150</td></tr>
-        <tr><td>Tantasy</td><td>₹160</td></tr>
-        <tr><td>Quantella</td><td>₹350</td></tr>
-        <tr><td>Kresco Lolipop</td><td>₹400</td></tr>
-        <tr><td>Tun Tun</td><td>₹500</td></tr>
-        <tr><td>Fruit
+<input type="number" id="qty" placeholder="Quantity">
+
+<button onclick="generateBill()">Generate Bill</button>
+<div id="billBox"></div>
+<button onclick="downloadBill()">Download Bill (PDF)</button>
+</div>
+
+<div class="card">
+<h3>Barcode / QR Scanner</h3>
+<div id="preview"></div>
+<button onclick="startScanner()">Start Scanner</button>
+<p id="scanResult"></p>
+</div>
+
+</div>
+
+<script src="https://unpkg.com/html5-qrcode">function saveAddress() {
+  let address = document.getElementById("address").value;
+  if(!address) return alert("Enter address first");
+
+  let list = JSON.parse(localStorage.getItem("addresses") || "[]");
+  if(!list.includes(address)) list.push(address);
+  localStorage.setItem("addresses", JSON.stringify(list));
+
+  loadAddresses();
+}
+
+function loadAddresses() {
+  let list = JSON.parse(localStorage.getItem("addresses") || "[]");
+  let dropdown = document.getElementById("savedAddresses");
+  dropdown.innerHTML = '<option value="">Select Saved Address</option>';
+  list.forEach(addr => {
+    let opt = document.createElement("option");
+    opt.value = addr;
+    opt.textContent = addr;
+    dropdown.appendChild(opt);
+  });
+}
+
+function selectSavedAddress() {
+  let val = document.getElementById("savedAddresses").value;
+  if(val) document.getElementById("address").value = val;
+}
+
+// Load saved addresses on start
+window.onload = loadAddresses;
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+function generateBill() {
+  let name = document.getElementById("name").value || "---";
+  let location = document.getElementById("location").value || "---";
+  let address = document.getElementById("address").value || "---";
+  let productSelect = document.getElementById("product");
+  let product = productSelect.value;
+  let price = productSelect.options[productSelect.selectedIndex].dataset.price;
+  let qty = document.getElementById("qty").value || 1;
+
+  let total = price * qty;
+
+  let billText = `\nNIKKI BOOK DEPOT\n---------------------\nName: ${name}\nLocation: ${location}
+Address: ${address}\nProduct: ${product}\nPrice: ₹${price}\nQuantity: ${qty}\n---------------------\nTotal: ₹${total}`;
+
+  document.getElementById("billBox").innerText = billText;
+}
+
+function downloadBill() {
+  const { jsPDF } = window.jspdf;
+  let doc = new jsPDF();
+  let text = document.getElementById("billBox").innerText;
+  doc.text(text, 10, 10);
+  doc.save("bill.pdf");
+}
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(async pos => {
+      let lat = pos.coords.latitude;
+      let lon = pos.coords.longitude;
+
+      document.getElementById("location").value = `Lat:${lat.toFixed(4)}, Lon:${lon.toFixed(4)}`;
+
+      // Reverse geocoding using OpenStreetMap
+      try {
+        let res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`);
+        let data = await res.json();
+        document.getElementById("address").value = data.display_name;
+      } catch (e) {
+        document.getElementById("address").value = "Address not found";
+      }
+    });
+  } else {
+    alert("Location not supported");
+  }
+}, Lon:${lon}`;
+    });
+  } else {
+    alert("Location not supported");
+  }
+}
+
+function startScanner() {
+  const scanner = new Html5Qrcode("preview");
+  scanner.start(
+    { facingMode: "environment" },
+    { fps: 10, qrbox: 250 },
+    qr => {
+      document.getElementById("scanResult").innerText = "Scanned: " + qr;
+      if(q.includes("150")) document.getElementById("product").selectedIndex = 1;
+      if(q.includes("350")) document.getElementById("product").selectedIndex = 0;
+      scanner.stop();
+    }
+  );
+}
+</script>
+</body>
+</html>
